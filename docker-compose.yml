@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  zurmo:
+    build: .
+    ports:
+      - "127.0.0.1:8080:80"
+#    volumes:
+#      - "./zurmo/www:/var/www"
+    links:
+      - db
+    environment:
+      - ENVIRONMENT=DEV
+    restart: always
+  db:
+    image: mariadb:10.1
+    environment:
+      - MYSQL_ROOT_PASSWORD=docker
+      - MYSQL_DATABASE=zurmo
+      - MYSQL_USER=zurmo
+      - MYSQL_PASSWORD=zurmo
+    volumes:
+      - "./zurmo/data:/var/lib/mysql"
