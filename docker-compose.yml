@@ -21,3 +21,5 @@ services:
       - MYSQL_PASSWORD=zurmo
     volumes:
       - "./zurmo/data:/var/lib/mysql"
+  memcache:
+    image: memcached:alpine
